@@ -33,5 +33,7 @@ while True:
     elif guess == "exit":
         print("Thank you for playing!")
         break
-    else:
+    elif guess in countries:
         print("Oh no, she’s not here!")
+    else:
+        print("I don't know that country")
