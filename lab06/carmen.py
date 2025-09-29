@@ -1,6 +1,7 @@
 import random
 from geography import countries
-from haversine import haversine 
+from haversine import haversine
+
 
 def random_country_name():
     # Select a random country name from the key in the countries dictionary we imported.
@@ -22,7 +23,6 @@ def random_hint(country):
             from_LA = haversine(los_angeles, country["coordinates"], unit="km")
             hint = "approximately " + str(from_LA) + " km from Los Angeles"
     return "Carmen is in a country " + hint
-
 
 
 current_country_name = random_country_name()
