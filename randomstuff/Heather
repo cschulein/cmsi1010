@@ -1,0 +1,80 @@
+
+# def Heather():
+#   global looks, personality, supportiveness, humour
+#  looks = 10
+# personality = 10
+# supportiveness = 10
+# humour = 10
+"""
+def is_beautiful():
+    global looks
+    if looks == 10:
+        return True
+def is_kind():
+    global personality
+    if personality == 10:
+        return True
+
+def is_supportive():
+    global supportiveness
+    if supportiveness == 10:
+        return True
+
+def is_funny():
+    global humour
+    if humour == 10:
+        return True
+
+def is_perfect():
+    if is_beautiful() and is_kind() and is_supportive() and is_funny():
+        return True
+    else:
+        return False
+def describe_heather():
+    description = "Heather is "
+    if is_beautiful():
+        description += "beautiful, "
+    if is_kind():
+        description += "kind, "
+    if is_supportive():
+        description += "supportive, "
+    if is_funny():
+        description += "funny, "
+    if is_perfect():
+        description += "and perfect!"
+    return description
+
+def main():
+    global looks, personality, supportiveness, humour
+    looks = 10
+    personality = 10
+    supportiveness = 10
+    humour = 10
+    girlfriend = input("Enter your girlfriend's name: ")
+    if girlfriend.lower() == "heather":
+        print(describe_heather())
+    else:
+        print(f"{girlfriend} is not Heather.")
+"""
+
+
+def sad():
+    print("Cole is sad.")
+
+
+def is_happy():
+    heather_distance = input("Is she far away? (yes/no): ").strip().lower()
+    if heather_distance == "yes":
+        sad()
+    elif heather_distance == "no":
+        heather_nearby = input(
+            "Are you with her right now? (yes/no): ").strip().lower()
+        if heather_nearby == "yes":
+            print("Cole is happy!")
+        elif heather_nearby == "no":
+            sad()
+        else:
+            print("Invalid input.")
+
+
+is_happy()
