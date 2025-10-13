@@ -2,5 +2,8 @@
     "editor.formatOnSave": true,
     "editor.formatOnPaste": true,
     "editor.defaultFormatter": "ms-python.autopep8",
-    "notebook.defaultFormatter": "ms-python.autopep8"
+    "notebook.defaultFormatter": "ms-python.autopep8",
+    "pylint.ignorePatterns": [
+        "C0114, C0115, C0116"
+    ]
 }
