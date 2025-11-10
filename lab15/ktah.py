@@ -1,14 +1,19 @@
 from dataclasses import dataclass
 import math
 import pygame
+import pygame.freetype
 
 pygame.init()
 WIDTH, HEIGHT = 1024, 768
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("K'tah")
 clock = pygame.time.Clock()
+font = pygame.freetype.SysFont('sans', 100)
 frozen = False
+scarecrow = None
+
 UNFREEZE = pygame.USEREVENT + 1
+REMOVE_SCARECROW = pygame.USEREVENT + 2
 
 
 @dataclass
@@ -63,15 +68,20 @@ class Zombie(Agent):
 
 def draw_scene():
     if player.is_caught_by_any_of(zombies):
+        font.render_to(screen, (20, 20), "GAME OVER", (255, 0, 0))
+        pygame.display.flip()
         return
     player.move_towards(pygame.mouse.get_pos())
     if not frozen:
         for zombie in zombies:
-            zombie.move_towards((player.x, player.y))
+            zombie.move_towards(scarecrow or (player.x, player.y))
     screen.fill((0, 100, 0))
     player.draw()
     for zombie in zombies:
         zombie.draw()
+    if scarecrow:
+        pygame.draw.circle(screen, (255, 0, 0),
+                           scarecrow, 20)
     pygame.display.flip()
 
 
@@ -94,13 +104,20 @@ while True:
             pygame.quit()
             raise SystemExit
         if event.type == pygame.MOUSEBUTTONDOWN:
-            player.teleport(event.pos)
+            if player.is_caught_by_any_of(zombies) == False:
+                player.teleport(event.pos)
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_f:
                 if not frozen:
                     frozen = True
                     pygame.time.set_timer(UNFREEZE, 5000, loops=1)
+            elif event.key == pygame.K_s:
+                if not scarecrow:
+                    scarecrow = (player.x, player.y)
+                    pygame.time.set_timer(REMOVE_SCARECROW, 5000, loops=1)
         elif event.type == UNFREEZE:
             frozen = False
+        elif event.type == REMOVE_SCARECROW:
+            scarecrow = None
     clock.tick(60)
     draw_scene()
