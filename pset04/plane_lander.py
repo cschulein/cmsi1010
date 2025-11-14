@@ -24,9 +24,8 @@ GRASS_TOP = HEIGHT - GRASS_HEIGHT
 GRASS_RECTANGLE = (0, GRASS_TOP, WIDTH, GRASS_HEIGHT)
 GROUND_LEVEL = HEIGHT - (GRASS_HEIGHT // 2)
 TREE_SPACING = 173
-MAX_PLANE_SPEED = 40 #increased max speed
+MAX_PLANE_SPEED = 40  # increased max speed
 CRUISING_ALTITUDE = 50
-STARTING_FUEL = 100
 
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -146,11 +145,6 @@ def draw_altitude():
         f"Altitude: {HEIGHT - plane.y:.1f}", True, (0, 0, 0))
     screen.blit(altitude_text, (10, 30))
 
-def draw_fuel():
-    font = pygame.font.SysFont(None, 24)
-    fuel_text = font.render(
-        f"Fuel: {plane.fuel:.1f}", True, (0, 0, 0))
-    screen.blit(fuel_text, (10, 50))
 
 def draw_tree(x, y):
     pygame.draw.rect(screen, (139, 69, 19), (x-5, y-20, 10, 20))
@@ -170,7 +164,6 @@ def draw_scene():
         plane.move()
         draw_speed()
         draw_altitude()
-        draw_fuel()
     clock.tick(60)
     pygame.display.flip()
 
